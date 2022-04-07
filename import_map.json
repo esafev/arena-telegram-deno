@@ -1,0 +1,5 @@
+{
+  "imports": {
+     "text": "./api/text.ts"
+  }
+}
