@@ -1,3 +1,1 @@
-export default async (req: Request) => {
-  new Response(`Hello, from Deno v${Deno.version.deno}!`);
-};
+export default (req: Request) => new Response(`Hello, from Deno v${Deno.version.deno}!`);
