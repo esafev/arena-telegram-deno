@@ -1,4 +1,5 @@
 import { Status } from 'https://deno.land/std/http/http_status.ts';
+import { serve } from "https://deno.land/std@0.114.0/http/server.ts";
 
 const sanitize = (text: string): string => text.replace(/[_*[\]()~`>#+\-=|{}.!\\]/g, '\\$&');
 
@@ -69,7 +70,7 @@ const getChannelPostByTime = async ({ slug, diff }: any) => {
   });
 };
 
-export default async (req: Request) => {
+serve(async (req: Request) => {
   const searchParams = new URLSearchParams(req.url);
 
   const slug = searchParams.get('slug');
@@ -79,6 +80,7 @@ export default async (req: Request) => {
   // if (!slug || !tgToken || !tgChannel) return new Response(null, { status: Status.BadRequest });
   const posts = await getChannelPostByTime({ slug: 'good-reads-latvg2mcm4w', diff: 15 });
   await postMessagesFromArena({ posts, tgToken, tgChannel });
+  console.log(posts);
   
   return new Response(`Hello, from Deno v${Deno.version.deno}!`)
-};
+})
