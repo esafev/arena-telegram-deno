@@ -82,5 +82,5 @@ serve(async (req: Request) => {
   await postMessagesFromArena({ posts, tgToken, tgChannel });
   console.log(posts);
   
-  return new Response(`Hello, from Deno v${Deno.version.deno}!`)
+  return new Response(`Hello, from Deno!`)
 })
