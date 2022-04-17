@@ -1,0 +1,15 @@
+name: 15-minute-cron
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call arena-telegram API
+        run: |
+          curl -G -H "X-Auth-Token: ${{ secrets.AUTH_TOKEN }}" \
+          --url ${{ secrets.API_URL }} \
+          -d "slug=${{ secrets.ARENA_CHANNEL_SLUG }}" \
+          -d "tgToken=${{ secrets.TELEGRAM_BOT_TOKEN }}" \
+          -d "tgChannel=${{ secrets.TELEGRAM_CHANNEL_ID }}" \
