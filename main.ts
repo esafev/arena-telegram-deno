@@ -22,7 +22,7 @@ serve(async (req: Request) => {
     status: Status.BadRequest 
   });
   
-  const posts = await getChannelPostByTime({ slug, diff: 15 });
+  const posts = await getChannelPostByTime({ slug, diff: 60 });
   await postMessagesFromArena({ posts, tgToken, tgChannel });
   
   return new Response(`Send ${posts.length} posts`);
